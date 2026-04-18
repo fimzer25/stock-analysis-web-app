@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TWT Assignment</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TWT6223 - WEB TECHNIQUES AND APPLICATIONS </div>
+    <ul>
+      <li>Home</li>
+      <li>Markets</li>
+      <li>News</li>
+      <li>About</li>
+      <li>Contact</li>
+      <li class="sidebar-toggle"><i class="fas fa-newspaper"></i> News</li>
+    </ul>
+  </nav>
+
+  <div class="stock-ticker">
+    <div class="ticker-content"></div>
+  </div>
+
+  <button class="mode-toggle"><i class="fas fa-moon"></i></button>
+
+  <!-- News Sidebar -->
+  <div class="news-sidebar">
+    <div class="sidebar-header">
+      <h3>Financial News</h3>
+      <button class="close-sidebar"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="news-categories">
+      <div class="category active">All News</div>
+      <div class="category">Stocks</div>
+      <div class="category">Crypto</div>
+      <div class="category">Economy</div>
+    </div>
+    <div class="news-feed">
+      <div class="news-card breaking">
+        <div class="news-tag">Breaking</div>
+        <h4 class="news-title">Fed Announces Interest Rate Decision</h4>
+        <p class="news-excerpt">The Federal Reserve has decided to maintain current interest rates amid economic uncertainty...</p>
+        <div class="news-meta">
+          <span class="news-time">2 mins ago</span>
+          <span class="news-source">Bloomberg</span>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-tag">Analysis</div>
+        <h4 class="news-title">Tech Stocks Rally After Earnings Reports</h4>
+        <p class="news-excerpt">Major tech companies show stronger-than-expected earnings, driving NASDAQ to record highs...</p>
+        <div class="news-meta">
+          <span class="news-time">45 mins ago</span>
+          <span class="news-source">CNBC</span>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-tag">Crypto</div>
+        <h4 class="news-title">Bitcoin Surges Past $70,000</h4>
+        <p class="news-excerpt">Bitcoin reaches new all-time high as institutional adoption continues to grow worldwide...</p>
+        <div class="news-meta">
+          <span class="news-time">1 hour ago</span>
+          <span class="news-source">CoinDesk</span>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-tag">Economy</div>
+        <h4 class="news-title">Global Markets React to Trade Deal</h4>
+        <p class="news-excerpt">New international trade agreement boosts market confidence across Asia and Europe...</p>
+        <div class="news-meta">
+          <span class="news-time">3 hours ago</span>
+          <span class="news-source">Reuters</span>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-tag">Stocks</div>
+        <h4 class="news-title">Apple Announces New Product Line</h4>
+        <p class="news-excerpt">Tech giant unveils revolutionary AR glasses, shares jump 5% in after-hours trading...</p>
+        <div class="news-meta">
+          <span class="news-time">5 hours ago</span>
+          <span class="news-source">Wall Street Journal</span>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="news-update-time">Last updated: <span id="news-update-time">Just now</span></div>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <div class="layout">
+    <!-- TradingView Widget Container -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright">
+        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+          <span class="blue-text">Track all markets on TradingView</span>
+        </a>
+      </div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+      {
+        "feedMode": "all_symbols",
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "width": "100%",
+        "height": 550,
+        "colorTheme": "light",
+        "locale": "en"
+      }
+      </script>
+    </div>
+
+    <!-- Trading UI Container -->
+    <div class="container">
+
+      <!-- Stock Search -->
+      <div class="stock-search">
+        <input type="text" id="stock-symbol" placeholder="Enter stock symbol e.g. AAPL" />
+        <button id="search-btn">Search</button>
+      </div>
+      <div id="search-error" style="color: #f44336; margin-bottom: 16px; display: none;"></div>
+
+      <div class="tabs">
+        <span class="tab active">P1</span>
+        <span class="tab">P2</span>
+        <span class="tab">P3</span>
+      </div>
+
+      <div class="toggle-group">
+        <div class="toggle buy active">Buy</div>
+        <div class="toggle sell">Sell</div>
+        <div class="toggle auto">Auto</div>
+      </div>
+
+      <div class="actions">
+        <span class="action active">Buy Now</span>
+        <span class="action">Buy Dip</span>
+        <span class="balance">Bal: -- USD</span>
+      </div>
+
+      <div class="amount-section">
+        <div class="amount-input">
+          <label>Amount</label>
+          <input type="number" placeholder="0.00" />
+          <span class="currency">USD</span>
+        </div>
+      </div>
+
+      <div class="buynow">Buy</div>
+<div class="orderbook-container">
+  <div class="orderbook-tables">
+    <div class="orderbook-side">
+      <div class="orderbook-header">
+        <span>Price (Buy)</span>
+        <span>Amount</span>
+      </div>
+      <div id="buy-orders" class="orderbook-list"></div>
+    </div>
+    <div class="orderbook-side">
+      <div class="orderbook-header">
+        <span>Price (Sell)</span>
+        <span>Amount</span>
+      </div>
+      <div id="sell-orders" class="orderbook-list"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+  </div>
+
+  <script src="script.js"></script>
+  <div class="heatmap-row">
+  <!-- Stock Heatmap -->
+  <div class="heatmap-widget">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+      {
+        "exchanges": [],
+        "dataSource": "SPX500",
+        "grouping": "sector",
+        "blockSize": "market_cap_basic",
+        "blockColor": "change",
+        "locale": "en",
+        "symbolUrl": "",
+        "colorTheme": "light",
+        "hasTopBar": false,
+        "isDataSetEnabled": false,
+        "isZoomEnabled": true,
+        "hasSymbolTooltip": true,
+        "isMonoSize": false,
+        "width": "100%",
+        "height": 500
+      }
+      </script>
+    </div>
+  </div>
+
+  <!-- Crypto Heatmap -->
+  <div class="heatmap-widget">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
+      {
+        "dataSource": "Crypto",
+        "blockSize": "market_cap_calc",
+        "blockColor": "24h_close_change|5",
+        "locale": "en",
+        "symbolUrl": "",
+        "colorTheme": "light",
+        "hasTopBar": false,
+        "isDataSetEnabled": false,
+        "isZoomEnabled": true,
+        "hasSymbolTooltip": true,
+        "isMonoSize": false,
+        "width": "100%",
+        "height": 500
+      }
+      </script>
+    </div>
+  </div>
+</div>
+<div class="news-ticker-wrapper" aria-label="Latest news">
+  <div class="news-ticker">
+  <div class="news-item">Breaking: Market hits all-time high!</div>
+  <div class="news-item">Tech stocks rally after new product launches.</div>
+  <div class="news-item">Federal Reserve signals possible interest rate hike.</div>
+  <div class="news-item">Cryptocurrency volatility spikes amid regulation news.</div>
+  <div class="news-item">Energy sector sees strong quarterly earnings.</div>
+  <div class="news-item">New startup IPO attracts massive investor interest.</div>
+  <div class="news-item">Global supply chain disruptions ease slightly.</div>
+  <div class="news-item">Analysts predict bullish trend for the next quarter.</div>
+
+  </div>
+</div>
+<section class="forecast-section">
+  <div class="forecast-header">
+    <h2>Forecast Summary</h2>
+    <div class="forecast-update">Last updated: <span id="forecast-time">Just now</span></div>
+  </div>
+  <div class="forecast-grid">
+    <div class="forecast-card bullish">
+      <div class="forecast-label">Trend</div>
+      <div class="forecast-value">Bullish</div>
+    </div>
+    <div class="forecast-card signal">
+      <div class="forecast-label">Signal</div>
+      <div class="forecast-value">Buy</div>
+    </div>
+    <div class="forecast-card confidence">
+      <div class="forecast-label">Confidence</div>
+      <div class="forecast-value">82%</div>
+    </div>
+    <div class="forecast-card prediction">
+      <div class="forecast-label">Predicted Price</div>
+      <div class="forecast-value">$142.80</div>
+    </div>
+  </div>
+</section>
+<section class="predictionbox-section">
+  <div class="predictionbox-header">
+    <h2>Price Prediction</h2>
+    <label for="predictionbox-date">Select Date:</label>
+    <input type="date" id="predictionbox-date" />
+  </div>
+  <div class="predictionbox-update">Last updated: <span id="predictionbox-update-time">Just now</span></div>
+  <div class="predictionbox-grid">
+    <div class="predictionbox-card predictionbox-historical">
+      <div class="predictionbox-label">Historical Price</div>
+      <div id="historical-price" class="predictionbox-value">--</div>
+    </div>
+    <div class="predictionbox-card predictionbox-predicted">
+      <div class="predictionbox-label">Predicted Price</div>
+      <div id="predicted-price" class="predictionbox-value">--</div>
+    </div>
+  </div>
+</section>
+<!-- Order Book Depth Chart -->
+<div class="depth-chart-container">
+    <div class="depth-chart-header">
+        <h3>Order Book Depth</h3>
+        <span class="depth-chart-pair">BTC/USDT</span>
+    </div>
+    <div class="depth-chart-wrapper">
+        <div class="depth-chart" id="depthChart"></div>
+    </div>
+    <div class="orderbook-container">
+        <div class="orderbook-tables">
+            <div class="orderbook-side bids">
+                <div class="orderbook-header">
+                    <span>Price (USDT)</span>
+                    <span>Amount (BTC)</span>
+                    <span>Total</span>
+                </div>
+                <div class="orderbook-list" id="bidsList"></div>
+            </div>
+            <div class="orderbook-side asks">
+                <div class="orderbook-header">
+                    <span>Price (USDT)</span>
+                    <span>Amount (BTC)</span>
+                    <span>Total</span>
+                </div>
+                <div class="orderbook-list" id="asksList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

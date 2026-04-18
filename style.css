@@ -1,0 +1,1095 @@
+body {
+  font-family: Arial, sans-serif;
+  background: rgb(32, 30, 30);
+  color: #ccc;
+  padding: 20px;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+
+.layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.tradingview-widget-container {
+  flex: 2;
+  min-width: 600px;
+  padding: 10px;
+  background: #000;
+  border-radius: 8px;
+}
+
+.container {
+  flex: 1;
+  max-width: 400px;
+  margin-left: auto;
+  background-color: #0e0e0e;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Stock Search */
+.stock-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stock-search input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #111;
+  color: white;
+  font-size: 1rem;
+}
+
+.stock-search input::placeholder {
+  color: #777;
+}
+
+.stock-search button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.stock-search button:hover {
+  background-color: #45a049;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  border-radius: 5px;
+  text-align: center;
+  width: 50px;
+  background: #222;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tab.active {
+  background: #555;
+  color: #fff;
+}
+
+.tab:hover {
+  background: #555;
+}
+
+/* Toggle Group */
+.toggle-group {
+  display: flex;
+  gap: 4px;
+  background: #222;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.toggle {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  color: white;
+}
+
+.toggle:active {
+  background-color: #333; 
+}
+
+.toggle.active.buy {
+  color: greenyellow; 
+}
+.toggle.active.sell {
+  color: red; 
+}
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.action {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.action.active {
+  background-color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.action.buy.active {
+  color: green;
+}
+
+.action.sell.active {
+  color: red;
+}
+
+.balance {
+  font-size: 0.9em;
+}
+
+/* Amount Section */
+.amount-section {
+  margin-bottom: 16px;
+  background: #000;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.amount-input label {
+  flex: 1;
+  font-size: 0.85em;
+}
+
+.amount-input input {
+  flex: 4;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #111;
+  color: white;
+}
+
+/* Buy Now Button */
+.buynow {
+  padding: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  font-weight: bolder;
+  font-size: medium;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: white;
+}
+
+.buynow:hover {
+  background-color: #333;
+}
+.buynow.buy.active {
+  background-color: #333; 
+  color: greenyellow;
+}
+
+.buynow.sell.active {
+  background-color: #333; 
+  color: red;
+}
+
+/* Dark and Light Mode Related */
+.mode-toggle {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #121212;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+.toggle.auto.active {
+  color:rgb(35, 144, 211)
+}
+.mode-toggle:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+/* Responsive update for stock search */
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .tradingview-widget-container {
+    min-width: auto;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .container {
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .stock-search {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stock-search input {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .stock-search button {
+    flex: 1 1 100%;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    flex: 1 1 30%;
+    min-width: 50px;
+  }
+
+  .toggle-group {
+    flex-wrap: wrap;
+  }
+
+  .toggle {
+    flex: 1 1 30%;
+    min-width: 70px;
+  }
+}
+
+/* Ticker styles */
+.stock-ticker {
+  width: 100%;
+  overflow: hidden;
+  background: #111;
+  color: #eee;
+  font-family: monospace, monospace;
+  font-size: 16px;
+  white-space: nowrap;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  padding: 8px 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ticker-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.stock-item {
+  display: inline-block;
+  margin-right: 40px;
+}
+
+.stock-symbol {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.stock-price {
+  margin-right: 6px;
+}
+
+.stock-change {
+  color: green;
+}
+
+.stock-change.negative {
+  color: red;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #222;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+.navbar .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  cursor: default;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li:hover {
+  color: #1e90ff;
+}
+
+.orderbook-container {
+  max-width: 900px;
+  width: 100%;
+  height: 320px;
+  background-color: #0e1117;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #c1c4cd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.4);
+  overflow: hidden;
+  position: relative;
+}
+
+.orderbook-tables {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.orderbook-side {
+  flex: 1;
+  background-color: #141a2b;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgb(255 255 255 / 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.orderbook-list {
+  position: absolute;
+  width: 100%;
+  will-change: transform;
+}
+
+.orderbook-header,
+.orderbook-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.orderbook-header {
+  font-weight: 600;
+  color: #9da4b3;
+  border-bottom: 1px solid #242a3b;
+}
+
+.orderbook-row {
+  color: #c1c4cd;
+  border-bottom: 1px solid #1b2233;
+  transition: background-color 0.3s ease;
+}
+
+.orderbook-row.buy {
+  color: #1db954;
+}
+
+.orderbook-row.sell {
+  color: #f14343;
+}
+
+.orderbook-row.updated {
+  background-color: rgba(29, 185, 84, 0.8);
+  color: white;
+  animation: fadeHighlight 1s forwards;
+}
+
+@keyframes fadeHighlight {
+  0% {
+    background-color: rgba(29, 185, 84, 0.8);
+    color: white;
+  }
+  100% {
+    background-color: transparent;
+    color: #1db954;
+  }
+}
+.heatmap-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 40px auto;
+  max-width: 1300px;
+}
+
+.heatmap-widget {
+  flex: 1 1 48%;
+  min-width: 400px;
+  
+}
+
+.news-ticker-wrapper {
+   position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;              
+  background-color: #222;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;        
+  z-index: 9999;
+  padding-left: 10px;         
+  box-sizing: border-box;
+}
+
+.news-ticker {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll-left 20s linear infinite;
+}
+
+.news-item {
+  display: inline-block;
+  margin-right: 50px;
+  font-weight: bold;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.forecast-section {
+  background: #1b1b1b;
+  color: #eee;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  margin-top: 32px;
+}
+
+body.light-mode .forecast-section {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.forecast-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.forecast-update {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.forecast-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.forecast-card {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  background: #222;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+body.light-mode .forecast-card {
+  background: #fff;
+  color: #000;
+}
+
+.forecast-card:hover {
+  transform: translateY(-4px);
+}
+
+.forecast-label {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.forecast-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.forecast-card.bullish .forecast-value {
+  color: #4caf50;
+}
+
+.forecast-card.signal .forecast-value {
+  color: #00bcd4;
+}
+
+.forecast-card.confidence .forecast-value {
+  color: #ffa726;
+}
+
+.forecast-card.prediction .forecast-value {
+  color: #42a5f5;
+}
+/* Prediction Box Styles */
+.predictionbox-section {
+  width: 100%;
+  max-width: 100vw;
+  padding: 16px;
+  box-sizing: border-box;
+  margin: 20px 0;
+  background-color: #0e0e0e;
+  color: #ccc;
+  border-radius: 10px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.light-mode .predictionbox-section {
+  background-color: white;
+  color: black;
+  border-color: #ddd;
+}
+
+/* Header */
+.predictionbox-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.predictionbox-header label {
+  font-weight: 600;
+  white-space: nowrap;
+  color: inherit;
+}
+
+/* Date input */
+#predictionbox-date {
+  flex-grow: 1;
+  min-width: 150px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #111;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode #predictionbox-date {
+  background: #f0f0f0;
+  color: #333;
+}
+
+#predictionbox-date:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+/* Grid layout */
+.predictionbox-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.predictionbox-card {
+  flex: 1 1 300px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .predictionbox-card {
+  background-color: #f8f8f8;
+  border-color: #ddd;
+}
+
+.predictionbox-label {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 1.1em;
+  color: inherit;
+}
+
+.predictionbox-value {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+/* Color variations for different values */
+.predictionbox-value.positive {
+  color: #4caf50; 
+}
+
+.predictionbox-value.negative {
+  color: #f44336; 
+}
+
+.predictionbox-value.neutral {
+  color: #ffa726; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .predictionbox-grid {
+    flex-direction: column;
+  }
+  
+  .predictionbox-card {
+    flex: 1 1 auto;
+  }
+}
+/* News Sidebar Styles */
+.news-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #eee;
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+body.light-mode .news-sidebar {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.news-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  background-color: #121212;
+}
+
+body.light-mode .sidebar-header {
+  background-color: #e9ecef;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  color: #eee;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+body.light-mode .close-sidebar {
+  color: #333;
+}
+
+.news-categories {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  overflow-x: auto;
+}
+
+body.light-mode .news-categories {
+  border-bottom: 1px solid #ddd;
+}
+
+.category {
+  padding: 8px 15px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-color: #333;
+  color: #eee;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+body.light-mode .category {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.category.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+body.light-mode .category.active {
+  background-color: #28a745;
+}
+
+.category:hover {
+  background-color: #444;
+}
+
+body.light-mode .category:hover {
+  background-color: #d0d0d0;
+}
+
+.news-feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.news-card {
+  background-color: #222;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+body.light-mode .news-card {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.news-card.breaking {
+  border-left: 4px solid #f44336;
+}
+
+.news-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: #333;
+  color: #eee;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+body.light-mode .news-tag {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.news-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #eee;
+}
+
+body.light-mode .news-title {
+  color: #333;
+}
+
+.news-excerpt {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+body.light-mode .news-excerpt {
+  color: #666;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.sidebar-footer {
+  padding: 15px;
+  border-top: 1px solid #333;
+  font-size: 0.8rem;
+  color: #777;
+  text-align: center;
+}
+
+body.light-mode .sidebar-footer {
+  border-top: 1px solid #ddd;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .news-sidebar {
+    width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-sidebar {
+    width: 280px;
+  }
+  
+  .sidebar-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .news-title {
+    font-size: 1rem;
+  }
+  
+  .news-excerpt {
+    font-size: 0.85rem;
+  }
+}
+
+/* Navbar adjustment for sidebar toggle */
+.navbar .sidebar-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.navbar .sidebar-toggle i {
+  font-size: 1rem;
+}
+/* Order Book Depth Chart */
+.depth-chart-container {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #0e0e0e;
+    border-radius: 10px;
+    border: 1px solid #333;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.light-mode .depth-chart-container {
+    background-color: white;
+    border-color: #ddd;
+}
+
+.depth-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+body.light-mode .depth-chart-header {
+    color: #333;
+}
+
+.depth-chart-wrapper {
+    height: 200px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.depth-chart {
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    border-radius: 6px;
+}
+
+body.light-mode .depth-chart {
+    background-color: #f8f8f8;
+}
+
+.orderbook-container {
+    max-width: 100%;
+    width: 100%;
+    height: 300px;
+    background-color: #0e1117;
+    border-radius: 10px;
+    color: #c1c4cd;
+    user-select: none;
+    overflow: hidden;
+    position: relative;
+}
+
+body.light-mode .orderbook-container {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.orderbook-tables {
+    display: flex;
+    gap: 16px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.orderbook-side {
+    flex: 1;
+    background-color: #141a2b;
+    border-radius: 8px;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+body.light-mode .orderbook-side {
+    background-color: #e9ecef;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.orderbook-header, .orderbook-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.orderbook-header {
+    font-weight: 600;
+    color: #9da4b3;
+    border-bottom: 1px solid #242a3b;
+}
+
+body.light-mode .orderbook-header {
+    color: #666;
+    border-bottom: 1px solid #ddd;
+}
+
+.orderbook-row {
+    color: #c1c4cd;
+    border-bottom: 1px solid #1b2233;
+    transition: background-color 0.3s ease;
+}
+
+body.light-mode .orderbook-row {
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.orderbook-row.buy {
+    color: #1db954;
+}
+
+.orderbook-row.sell {
+    color: #f14343;
+}
+
+.orderbook-row.updated {
+    background-color: rgba(29, 185, 84, 0.8);
+    color: white;
+    animation: fadeHighlight 1s forwards;
+}
+
+@keyframes fadeHighlight {
+    0% { background-color: rgba(29, 185, 84, 0.8); color: white; }
+    100% { background-color: transparent; color: #1db954; }
+}
